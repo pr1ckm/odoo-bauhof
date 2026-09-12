@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Formularansicht (Form) erweitern -->
+    <record id="view_vehicle_form_inherit_bauhof" model="ir.ui.view">
+        <field name="name">fleet.vehicle.form.inherit.bauhof</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+
+            <!-- 1. Fahrzeugtyp im Bereich "FAHRZEUG" nach der Kategorie einfügen -->
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="vehicle_type"/>
+            </xpath>
+
+            <!-- 2. Bauhof, Fristen & Laufleistung als neuer Block im Formular -->
+            <xpath expr="//sheet" position="inside">
+                <group string="Bauhof, Fristen &amp; Laufleistung">
+                    <group>
+                        <field name="odometer" string="Kilometerstand (km)"/>
+                        <field name="operating_hours"/>
+                    </group>
+                    <group>
+                        <field name="tuev_next"/>
+                        <field name="uvv_next"/>
+                        <field name="tachograph_check"/>
+                    </group>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- Listenansicht (List / Tree) erweitern -->
+    <record id="view_vehicle_tree_inherit_bauhof" model="ir.ui.view">
+        <field name="name">fleet.vehicle.list.inherit.bauhof</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state_id']" position="after">
+                <field name="vehicle_type" optional="show"/>
+                <field name="odometer" string="Kilometerstand" optional="show"/>
+                <field name="operating_hours" optional="show"/>
+                <field name="tuev_next" optional="show"/>
+                <field name="uvv_next" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Aktion für Lieferanten & Werkstätten -->
+    <record id="action_bauhof_vendors" model="ir.actions.act_window">
+        <field name="name">Lieferanten &amp; Werkstätten</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,kanban,form</field>
+        
+        <!-- Filter-Kriterien:
+             1. is_company = True             -> Nur Firmen / Unternehmen
+             2. user_ids = False              -> Keine Odoo-Systembenutzer
+             3. id not in allowed_company_ids -> Schließt das eigene Mandanten-Unternehmen aus
+        -->
+        <field name="domain">[
+            ('is_company', '=', True),
+            ('user_ids', '=', False),
+            ('id', 'not in', allowed_company_ids)
+        ]</field>
+
+        <field name="context">{
+            'default_is_company': True,
+            'default_supplier_rank': 1,
+            'search_default_supplier': 1
+        }</field>
+    </record>
+
+    <!-- Menüeintrag unter Fuhrpark -> Konfiguration -->
+    <menuitem id="menu_bauhof_vendors"
+              name="Lieferanten &amp; Werkstätten"
+              parent="fleet.fleet_configuration"
+              action="action_bauhof_vendors"
+              sequence="30"/>
+
+</odoo>
