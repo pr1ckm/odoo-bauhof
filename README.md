@@ -16,13 +16,13 @@ Dieses Repository dient als technischer und konzeptioneller Versuch, Odoos Stand
 
 ## Inhaltsverzeichnis
 
-1. [Projektcharakter (Proof of Concept)](#-projektcharakter-proof-of-concept)
-2. [Funktionsumfang & Highlights](#-funktionsumfang--highlights)
-3. [Projektstruktur & Dateien](#-projektstruktur--dateien)
-4. [Systemvoraussetzungen](#-systemvoraussetzungen)
-5. [Installation & Inbetriebnahme](#-installation--inbetriebnahme)
-6. [Dateninitialisierung & Testdaten-Import](#-dateninitialisierung--testdaten-import)
-7. [Lizenz](#-lizenz)
+1. [Projektcharakter (Proof of Concept)](#projektcharakter-proof-of-concept)
+2. [Funktionsumfang & Highlights](#funktionsumfang--highlights)
+3. [Projektstruktur & Dateien](#projektstruktur--dateien)
+4. [Systemvoraussetzungen](#systemvoraussetzungen)
+5. [Installation & Inbetriebnahme](#installation--inbetriebnahme)
+6. [Dateninitialisierung & Testdaten-Import](#dateninitialisierung--testdaten-import)
+7. [Lizenz](#lizenz)
 
 ---
 
