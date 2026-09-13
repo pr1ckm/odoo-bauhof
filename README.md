@@ -71,7 +71,7 @@ Im Rahmen dieses PoC wurden folgende Kernbereiche umgesetzt und getestet:
         └── views/
             ├── fleet_vehicle_view.xml          # UI-Ansichten für Fuhrpark
             └── maintenance_equipment_view.xml  # UI-Ansichten für Wartung & Geräte
-
+```
 ---
 
 ## Systemvoraussetzungen
@@ -116,9 +116,8 @@ Da es sich um einen Proof of Concept handelt, enthält das Projekt ein mächtige
 Führe den Import über die Odoo-Shell im laufenden Docker-Container aus:
 
 ```bash
-docker exec -i odoo18_web odoo shell -c /etc/odoo/odoo.conf -d fuhrpark << 'EOF'
-# Hier das Import-Skript ausführen oder einfügen
-EOF
+chmod +x fahrzeuge.sh
+sh ./fahrzeuge.sh
 ```
 
 Nach dem Durchlauf stehen erste fiktive Testdaten in deiner Odoo-Instanz zur Verfügung.
